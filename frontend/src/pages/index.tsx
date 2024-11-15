@@ -1,7 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardComponent from '../components/CardComponent';
-import exp from 'constants';
 
 interface User {
   id: number;
@@ -10,7 +11,9 @@ interface User {
 }
 
 export default function Home() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
+  // const apiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
+  const apiUrl = '/api';
+  // const apiUrl = 'http://backend:4000/api';
   const [users, setUsers] = useState<User[]>([]);
   const [newUser, setNewUser] = useState({ name: '', email: '' });
   const [updateUser, setUpdateUser] = useState({ id: '', name: '', email: '' });
