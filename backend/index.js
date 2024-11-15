@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 });
 
 //test api
-app.get('/test', (req, res) => {
+app.get('/api/test', (req, res) => {
   try {
     res.status(200).json({ message: 'API is working' });
   } catch (error) {
@@ -25,7 +25,7 @@ app.get('/test', (req, res) => {
 });
 
 //get all users
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
     const users = await prisma.user.findMany();
     res.status(200).json(users);
@@ -35,7 +35,7 @@ app.get('/users', async (req, res) => {
 });
 
 //get user by id
-app.get('/users/:id', async (req, res) => {
+app.get('/api/users/:id', async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -49,7 +49,7 @@ app.get('/users/:id', async (req, res) => {
 });
 
 //create user
-app.post('/users', async (req, res) => {
+app.post('/api/users', async (req, res) => {
   try {
     const user = await prisma.user.create({
       data: {
@@ -64,7 +64,7 @@ app.post('/users', async (req, res) => {
 });
 
 //update user
-app.put('/users/:id', async (req, res) => {
+app.put('/api/users/:id', async (req, res) => {
   try {
     const user = await prisma.user.update({
       where: {
@@ -82,7 +82,7 @@ app.put('/users/:id', async (req, res) => {
 });
 
 //delete user
-app.delete('/users/:id', async (req, res) => {
+app.delete('/api/users/:id', async (req, res) => {
   try {
     const user = await prisma.user.delete({
       where: {
