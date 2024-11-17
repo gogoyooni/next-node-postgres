@@ -7,12 +7,14 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/v1/:path*",
-        destination: process.env.NODE_ENV === "development"
-        ? "http://localhost:5555/api/v1/:path*"
-        : `${process.env.NEXT_PUBLIC_API_URL}/:path*`, // Kubernetes 서비스 이름으로 수정
+        destination:
+          process.env.NODE_ENV === "development"
+            ? "http://localhost:5555/api/v1/:path*"
+            : "http://myapp.local/api/v1/:path*", // Kubernetes 서비스 이름으로 수정
       },
     ];
   },
+  output: "standalone", // standalone 모드 활성화
 };
 
 export default nextConfig;

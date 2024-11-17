@@ -5,7 +5,7 @@ const app = express();
 
 app.use(cors());
 
-app.get("/api/v1/users", (req, res) => {
+app.get("/api/v1/test", (req, res) => {
   try {
     const users = [
       { id: 1, name: "John Doe" },
@@ -19,23 +19,23 @@ app.get("/api/v1/users", (req, res) => {
 });
 
 //test api
-app.get("/api/v1/test", (req, res) => {
-  try {
-    res.status(200).json({ message: "API is working" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-//get all users
-// app.get("/api/v1/users", async (req, res) => {
+// app.get("/api/v1/test", (req, res) => {
 //   try {
-//     const users = await prisma.user.findMany();
-//     res.status(200).json(users);
+//     res.status(200).json({ message: "API is working" });
 //   } catch (error) {
 //     res.status(500).json({ message: error.message });
 //   }
 // });
+
+//get all users
+app.get("/api/v1/users", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 //get user by id
 app.get("/api/v1/users/:id", async (req, res) => {
